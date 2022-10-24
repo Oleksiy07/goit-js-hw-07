@@ -8,20 +8,20 @@ const galleryMarkup = createGalleryMarkup(galleryItems);
 
 galleryContainer.insertAdjacentHTML('beforeend', galleryMarkup);
 
-const images = document.querySelectorAll('.gallery__image');
+galleryContainer.addEventListener('click', onImageClick);
 
-images.forEach(image => {
-    image.addEventListener('click', onImageClick);
-    
-    function onImageClick(e) {
-        e.preventDefault();
-        
-        const instance = basicLightbox.create(`
-        <img src="${image.dataset.source}" width="800" height="600">
-        `);
-        instance.show()
+function onImageClick(e) {
+    if (e.target.nodeName !== "IMG") {
+        return;
     }
-});
+    
+    e.preventDefault();
+    
+    const instance = basicLightbox.create(`
+    <img src="${e.target.dataset.source}" width="800" height="600">
+    `);
+    instance.show()
+}
 
 function createGalleryMarkup(images) {
     return images

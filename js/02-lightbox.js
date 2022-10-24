@@ -8,18 +8,7 @@ const galleryMarkup = createGalleryMarkup(galleryItems);
 
 galleryContainer.insertAdjacentHTML('beforeend', galleryMarkup);
 
-const images = document.querySelectorAll('.gallery__image');
-
-images.forEach(image => {
-    image.addEventListener('click', onImageClick);
-    
-    function onImageClick(e) {
-        e.preventDefault();
-        
-        const lightbox = new SimpleLightbox('.gallery a', { captionsData: 'alt', captionDelay: 250 });
-
-    }
-});
+const lightbox = new SimpleLightbox('.gallery a', { captionsData: 'alt', captionDelay: 250 });
 
 function createGalleryMarkup(images) {
     return images
